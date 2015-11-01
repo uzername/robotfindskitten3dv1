@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Three.js  example (robotfindskitten)</title>
+        <script src = "lib/three.min.js"> </script>
+        <script type="text/javascript" src="lib/Stats.js"></script>
+        <script type='text/javascript' src='lib/dat.gui.min.js'></script>
+        <script type="text/javascript" src="lib/set.js"></script>
+        <link rel="stylesheet" type="text/css" href="thjssc_style.css">
+       <!-- <script type="text/javascript" src="thjssc_mainfunc.js"> </script> -->
+       <script type="text/javascript" src="mouse.js"> </script>
+       <script type="text/javascript" src="itmloader.js"> </script>
+       <script type="text/javascript" src="anonymous_pro_regular.typeface.js"> </script>
+       <script type="text/javascript"> 
+           function showOrHide() {
+               var tmpattr=document.getElementById("param").style.display;
+               if (tmpattr=="none"){
+                    document.getElementById("param").style.display="block";
+                } else {
+                    document.getElementById("param").style.display="none";
+                }
+           }
+           function resetField() {
+               var wdt = parseInt(document.getElementById("inpwdth").value);
+               var dpt = parseInt(document.getElementById("inpdpth").value);
+               var itms = parseInt(document.getElementById("itmcount").value);
+               kittenfound = false;
+               document.getElementById("whatis").innerHTML = "[ [ [ Go forth and find a kitten! ] ] ]";
+               cleanScene();
+               //defSkyBox();
+               defScene(wdt,dpt);
+               placeItems(itms);
+                    //console.log(yobaplane2);
+                    //scene.remove(yobaplane2);
+                    //renderer.deallocateObject( yobaplane2 );
+           }
+        </script>
+    </head>
+    <body>
+        <div id="statsoutput"> </div>
+        <div id="param">
+            
+            width: <input type="text" name="inpwdth" id="inpwdth" value="26" size="4" />  depth: <input type="text" name="inpdpth" id="inpdpth" value="80" size="4" />
+            items: <input type="text" name="itmcount" id="itmcount" value="5" size="4" /> <br> 
+            <input type="button" value="RESET GAME FIELD PARAMETERS" name="parambtn" onclick="resetField()" />
+            <br>            
+        </div>
+        <div>Robotfindskitten! <span style="color: white; background: #0000cc; cursor: pointer" onclick="showOrHide()" > [config] </span> </div>
+        <div id="whatis"> [ [ [ Go forth and find a kitten! ] ] ] </div> 
+        <div id="WebGLoutput"> &nspar;
+           <div id="controloutput"> </div>
+           
+        </div>
+        <script src="thjssc_mainfunc2.js"></script>
+        <script src="SceneConstructor.js"></script>
+        <script type="text/javascript"> 
+            nkicollection = loadbase("itmbase.xml");
+            //    console.log(nkicollection);
+            defSkyBox();
+            defScene(26,80);
+            addCamera();
+            placeItems(30);
+            console.log(camera.position);
+            //console.log( cameraTurnAngleDeg+"//"+Math.cos(cameraTurnAngleDeg)+"//"+Math.sin(cameraTurnAngleDeg));
+            //launch when scene init is done
+            render();
+            
+        </script>
+    </body>
+</html>
